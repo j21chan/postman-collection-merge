@@ -1,59 +1,22 @@
-var parentSet = {};
+var fs = require('fs'),
+    Collection = require('postman-collection').Collection,
+    Item = require('postman-collection').Item,
+    PropertyList = require('postman-collection').PropertyList,
+    originCollection,
+    updatedCollection;
+
+// updatedCollection : 스웨거에서 변환 된 컬렉션 (추가/삭제/수정 된 API가 있을 수 있음)
+// originCollection : 기존 컬렉션 (테스트 코드, 요청 등이 셋팅 되어져 있음)
+updatedCollection = new Collection(JSON.parse(fs.readFileSync('merge_collection.json').toString()));
+originCollection = new Collection(JSON.parse(fs.readFileSync('added_collection.json').toString()));
+
+originCollection.forEachItem(item => console.log(item.id + ' : ' + item.request.url.getRaw()));
+
+templist = [];
 originCollection.forEachItem(item => {
-    deletedList.forEach(ditem => {
-        if(Item.isItem(item)) {
-            if(item.id == ditem.id) {
-                if(item.parent() !== 'undefined') {
-                    var parentList = [];
-                    var parent = item.parent();
-                    var flag = true;
-                    do {
-                        parentList.push(parent);
-                        try {
-                            parent = parent.parent();
-                        } catch (error) {
-                            flag = false;
-                        }
-                    } while(flag);
-                    //console.log(parentList);
-                    parentSet[item.id] = parentList;
-                }
-                console.log(item.id + ' : ' + ditem.id);
-                originCollection.items.remove(item.id);
-                console.log('deleted!');
-            }
-        }
-    });
+    templist.push(item);
 });
 
-////////////
+originCollection.items.remove(templist[2].id);
 
-originCollection.items.remove(oi => {
-    var flag = false;
-    deletedList.forEach(di => {
-        flag = findDeletedItem(oi, di);
-    });
-    return flag;
-});
-
-function findDeletedItem(items, targetId) {
-    var flag = false;
-    if(Item.isItem(items)) {
-        if(items.id == targetId) {
-            console.log('item deleted!');
-            flag = true;
-        }
-    } else {
-        items.items.remove(item => {
-            if(Item.isItem(item)) {
-                if(item.id == targetId) {
-                    console.log('sub folder item deleted!');
-                    flag = true;
-                }
-            } else {
-                findDeletedItem(item.items, targetId);
-            }
-        });
-    }
-    return flag;
-}
+originCollection.forEachItem(item => console.log(item.id + ' : ' + item.request.url.getRaw()));

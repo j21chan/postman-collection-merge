@@ -40,15 +40,23 @@ console.log('');
 removeDeletedItem(originCollection.items, deletedList[0].id);
 
 function removeDeletedItem(items, targetId) {
+    
+
+    console.log('삭제할 아이디: ' + targetId);
+
     try {
         items.remove(targetId);
-        removeDeletedItem(items.items, targetId);
     } catch(e) {
-        console.log(e);
-        return;
+        console.log('에러 발생: ' + e);
+    }
+    try {
+        items.each(item => removeDeletedItem(item, targetId));
+    } catch (e) {
+        console.log('에러 발생: ' + e);
     }
 }
 
+console.log('');
 originCollection.forEachItem(item => {
     console.log(item.id + ' : ' + item.request.url.getRaw());
 });
