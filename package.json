@@ -1,0 +1,14 @@
+{
+  "name": "postman-merge-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "postman-collection": "^3.4.8"
+  }
+}

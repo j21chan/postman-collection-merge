@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "ce146220-5a93-4a72-91c8-e2d08c7a0c47",
+		"name": "merge collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test folder",
+			"item": [
+				{
+					"name": "test1 folder",
+					"item": [
+						{
+							"name": "merge req",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://www.google.com",
+									"protocol": "http",
+									"host": [
+										"www",
+										"google",
+										"com"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "test1 req",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://www.naver.com",
+							"protocol": "http",
+							"host": [
+								"www",
+								"naver",
+								"com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test123 req",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.mega.net",
+					"protocol": "http",
+					"host": [
+						"www",
+						"mega",
+						"net"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
