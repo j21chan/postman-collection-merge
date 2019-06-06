@@ -16,7 +16,7 @@ originCollection.forEachItem(item => originList.push(item));
 originCollection.forEachItem(item => console.log(item.request.url.getRaw()));
 console.log('');
 
-console.log('스웨거에서 가져온 컬렉션: ');
+console.log('스웨거에서 변화된 컬렉션: ');
 updatedList = [];
 updatedCollection.forEachItem(item => updatedList.push(item));
 updatedCollection.forEachItem(item => console.log(item.request.url.getRaw()));
@@ -27,15 +27,44 @@ addedList = updatedList.filter(d => !originList.find(m => m.request.url.getRaw()
 addedList.forEach(add => console.log(add.request.url.getRaw()));
 console.log('');
 
+addedList.forEach(t => {
+    originCollection.items.add(t);
+});
+
 console.log('삭제된 리퀘스트: ');
+deletedIdList = [];
 deletedList = originList.filter(d => !updatedList.find(m => m.request.url.getRaw() == d.request.url.getRaw()));
-deletedList.forEach(item => console.log(item.request.url.getRaw()));
+console.log(deletedList[0].id + ' : ' + deletedList[0].request.url.getRaw());
 console.log('');
 
-originCollection.items.assimilate(updatedCollection.items, true);
+removeDeletedItem(originCollection.items, deletedList[0].id);
 
-console.log('최신화된 컬렉션: ');
-originCollection.forEachItem(item => console.log(item.request.url.getRaw()));
+function removeDeletedItem(items, targetId) {
+    
+    console.log('삭제할 아이디: ' + targetId);
+
+    try {
+        items.remove(targetId);
+    } catch(e) {
+        console.log('에러 발생: ' + e);
+    }
+    try {
+        items.each(item => removeDeletedItem(item, targetId));
+    } catch (e) {
+        console.log('에러 발생: ' + e);
+    }
+}
+
 console.log('');
+originCollection.forEachItem(item => {
+    console.log(item.id + ' : ' + item.request.url.getRaw());
+});
+
+console.log('');
+console.log('최종 컬렉션: ');
+originCollection.forEachItem(item => {
+    console.log(item.request.url.getRaw());
+});
 
 fs.writeFileSync('./collection_folder/merged_collection.json', JSON.stringify(originCollection));
+console.log('FIN');
