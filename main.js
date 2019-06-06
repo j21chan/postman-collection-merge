@@ -1,14 +1,12 @@
 var fs = require('fs'),
     Collection = require('postman-collection').Collection,
-    Item = require('postman-collection').Item,
-    PropertyList = require('postman-collection').PropertyList,
     originCollection,
     updatedCollection;
 
 // updatedCollection : 스웨거에서 변환 된 컬렉션 (추가/삭제/수정 된 API가 있을 수 있음)
 // originCollection : 기존 컬렉션 (테스트 코드, 요청 등이 셋팅 되어져 있음)
-updatedCollection = new Collection(JSON.parse(fs.readFileSync('./collection_folder/merge_collection.json').toString()));
-originCollection = new Collection(JSON.parse(fs.readFileSync('./collection_folder/added_collection.json').toString()));
+originCollection = new Collection(JSON.parse(fs.readFileSync('./collection_folder/origin collection.postman_collection.json').toString()));
+updatedCollection = new Collection(JSON.parse(fs.readFileSync('./collection_folder/swagger collection.postman_collection.json').toString()));
 
 console.log('기존 컬렉션: ');
 originList = [];
@@ -32,7 +30,9 @@ deletedList = originList.filter(d => !updatedList.find(m => m.request.url.getRaw
 deletedList.forEach(item => console.log(item.request.url.getRaw()));
 console.log('');
 
-originCollection.items.assimilate(updatedCollection.items, true);
+addedList.forEach(added => originCollection.items.add(added));
+deletedList.forEach(deleted => originCollection.items.remove(deleted.id));
+// originCollection.items.assimilate(updatedCollection.items, true);
 
 console.log('최신화된 컬렉션: ');
 originCollection.forEachItem(item => console.log(item.request.url.getRaw()));

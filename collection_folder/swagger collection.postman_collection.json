@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "ce146220-5a93-4a72-91c8-e2d08c7a0c47",
-		"name": "merge collection",
+		"_postman_id": "f878eb15-9960-42d5-964b-82540f1e6cbc",
+		"name": "swagger collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,7 +12,7 @@
 					"name": "test1 folder",
 					"item": [
 						{
-							"name": "merge req",
+							"name": "mrege req",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -51,17 +51,17 @@
 			]
 		},
 		{
-			"name": "test123 req",
+			"name": "added reqq",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://www.mega.net",
+					"raw": "http://www.added.com",
 					"protocol": "http",
 					"host": [
 						"www",
-						"mega",
-						"net"
+						"added",
+						"com"
 					]
 				}
 			},

@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "7c619d9a-308f-4414-84fe-dd4fbd5082c0",
+		"name": "origin collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test folder",
+			"item": [
+				{
+					"name": "test1 folder",
+					"item": [
+						{
+							"name": "merge req",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "db095e83-a866-4056-8c0e-6b401221e21e",
+										"exec": [
+											"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+											"    console.log(response.json());",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "bf65c5b0-cf4f-4683-8cec-34b2e9e36f45",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "test",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "test",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"test\": \"test\"\n}"
+								},
+								"url": {
+									"raw": "http://www.google.com",
+									"protocol": "http",
+									"host": [
+										"www",
+										"google",
+										"com"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "test1 req",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b172f535-e005-4710-9f7b-c6b7c3a28acf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "719deff3-9b2a-4fe6-b4a5-ce9ab3de59a0",
+								"exec": [
+									"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+									"    console.log(response.json());",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://www.naver.com",
+							"protocol": "http",
+							"host": [
+								"www",
+								"naver",
+								"com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test123 req",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.mega.net",
+					"protocol": "http",
+					"host": [
+						"www",
+						"mega",
+						"net"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "added req",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "81b63908-823a-430f-aff3-8c59a664a753",
+						"exec": [
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a58deb9a-b0c2-452d-b697-35fbbf6ab216",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "test123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"test\": {\n\t\t\"test\": \"test\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://www.daum.net?test=etstsetsetsdf",
+					"protocol": "http",
+					"host": [
+						"www",
+						"daum",
+						"net"
+					],
+					"query": [
+						{
+							"key": "test",
+							"value": "etstsetsetsdf"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "31a37a86-e305-445c-a38e-a18d3f008f07",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "11dcfe35-f2b6-4817-8e4d-4e5e8a534b42",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
