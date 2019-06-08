@@ -3,6 +3,10 @@ var fs = require('fs'),
     originCollection,
     updatedCollection;
 
+// true 이면 스웨거에서 추가된 request를 original collection으로 넣을 때
+// 폴더명을 기준으로 넣음
+addedByFolderName = true;
+
 // originCollection : 기존 컬렉션 (테스트 코드, 요청 등이 셋팅 되어져 있음)
 // updatedCollection : 스웨거에서 변환 된 컬렉션 (추가/삭제/수정 된 API가 있을 수 있음)
 originCollection = new Collection(JSON.parse(fs.readFileSync('./collection_folder/origin collection.postman_collection.json').toString()));
@@ -35,7 +39,7 @@ addedList.forEach(added => {
     var isAdded = false;
     originCollection.forEachItemGroup(originGroup => {
         // sub directory 안에 만들어진 경우
-        if(originGroup.name === added.parent().name && !isAdded) {
+        if((addedByFolderName) && (!isAdded) && (originGroup.name === added.parent().name)) {
             originGroup.items.add(added);
             isAdded = true;
         }
