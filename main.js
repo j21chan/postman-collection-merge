@@ -35,7 +35,7 @@ addedList.forEach(added => {
     var isAdded = false;
     originCollection.forEachItemGroup(originGroup => {
         // sub directory 안에 만들어진 경우
-        if(originGroup.name === added.parent().name) {
+        if(originGroup.name === added.parent().name && !isAdded) {
             originGroup.items.add(added);
             isAdded = true;
         }
