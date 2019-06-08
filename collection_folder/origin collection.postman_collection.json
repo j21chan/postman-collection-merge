@@ -132,28 +132,11 @@
 		},
 		{
 			"name": "test123 req",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://www.mega.net",
-					"protocol": "http",
-					"host": [
-						"www",
-						"mega",
-						"net"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "added req",
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "81b63908-823a-430f-aff3-8c59a664a753",
+						"id": "2c9da9c6-df2f-40d7-8fd5-b09c04fa66cb",
 						"exec": [
 							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
 							"    console.log(response.json());",
@@ -165,7 +148,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a58deb9a-b0c2-452d-b697-35fbbf6ab216",
+						"id": "df8c4553-0bbb-4ddb-89a8-f06def062ffd",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -175,51 +158,16 @@
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "test123",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "test123",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"test\": {\n\t\t\"test\": \"test\"\n\t}\n}"
-				},
+				"header": [],
 				"url": {
-					"raw": "http://www.daum.net?test=etstsetsetsdf",
+					"raw": "http://www.mega.net",
 					"protocol": "http",
 					"host": [
 						"www",
-						"daum",
+						"mega",
 						"net"
-					],
-					"query": [
-						{
-							"key": "test",
-							"value": "etstsetsetsdf"
-						}
 					]
 				}
 			},

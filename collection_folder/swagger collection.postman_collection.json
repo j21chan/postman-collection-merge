@@ -17,11 +17,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://www.google.com",
+									"raw": "http://www.deleted.com",
 									"protocol": "http",
 									"host": [
 										"www",
-										"google",
+										"deleted",
 										"com"
 									]
 								}
@@ -62,6 +62,23 @@
 						"www",
 						"added",
 						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test123 req",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.mega.net",
+					"protocol": "http",
+					"host": [
+						"www",
+						"mega",
+						"net"
 					]
 				}
 			},

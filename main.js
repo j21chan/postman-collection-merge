@@ -26,13 +26,26 @@ addedList.forEach(add => console.log(add.request.url.getRaw()));
 console.log('');
 
 console.log('삭제된 리퀘스트: ');
+deletedParentList = [];
 deletedList = originList.filter(d => !updatedList.find(m => m.request.url.getRaw() == d.request.url.getRaw()));
+deletedList.forEach(d => deletedParentList.push(d.parent()));
+// console.log(deletedList[0])
+// console.log(deletedParentList);
+deletedList.forEach(item => {
+    item.forEachParent(parent => {
+        parent.items.remove(item.id);
+        console.log(parent);
+    })
+})
 deletedList.forEach(item => console.log(item.request.url.getRaw()));
 console.log('');
 
 addedList.forEach(added => originCollection.items.add(added));
 deletedList.forEach(deleted => originCollection.items.remove(deleted.id));
+// deletedParentList.forEach(deletedItemGroup => originCollection.items.remove(deletedItemGroup.id));
 // originCollection.items.assimilate(updatedCollection.items, true);
+// updatedCollection.items.assimilate(originCollection.items, true);
+// console.log(updatedCollection.items.members);
 
 console.log('최신화된 컬렉션: ');
 originCollection.forEachItem(item => console.log(item.request.url.getRaw()));
