@@ -172,6 +172,36 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "removed root folder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56018852-7fec-48b1-8cde-bf9943e80c23",
+						"exec": [
+							"pm.environment.set(\"variable_key\", \"variable_value\");",
+							"pm.environment.unset(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.removed-root-folder.com",
+					"protocol": "http",
+					"host": [
+						"www",
+						"removed-root-folder",
+						"com"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [

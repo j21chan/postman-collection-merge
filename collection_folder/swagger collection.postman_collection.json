@@ -47,6 +47,23 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "added sub folder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.added-sub-folder.com",
+							"protocol": "https",
+							"host": [
+								"www",
+								"added-sub-folder",
+								"com"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -79,6 +96,23 @@
 						"www",
 						"mega",
 						"net"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "added root folder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.added-root-folder.com",
+					"protocol": "http",
+					"host": [
+						"www",
+						"added-root-folder",
+						"com"
 					]
 				}
 			},

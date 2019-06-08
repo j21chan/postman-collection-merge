@@ -31,9 +31,23 @@ deletedList.forEach(item => console.log(item.request.url.getRaw()));
 console.log('');
 
 // 추가된 request 추가
-addedList.forEach(added => originCollection.items.add(added));
-// 삭제된 request 삭제
+addedList.forEach(added => {
+    var isAdded = false;
+    originCollection.forEachItemGroup(originGroup => {
+        // sub directory 안에 만들어진 경우
+        if(originGroup.name === added.parent().name) {
+            originGroup.items.add(added);
+            isAdded = true;
+        }
+    });
+    // root directory에 만들어진 경우
+    if(!isAdded) {
+        originCollection.items.add(added);
+    }
+});
+// 삭제된 request 삭제 - root 디렉토리
 deletedList.forEach(deleted => originCollection.items.remove(deleted.id));
+// 삭제된 request 삭제 - sub 디렉토리
 deletedList.forEach(item => item.forEachParent(parent => parent.items.remove(item.id)));
 
 console.log('최신화된 컬렉션: ');
