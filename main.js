@@ -39,13 +39,16 @@ console.log('');
 // 추가된 request 추가
 addedList.forEach(added => {
     var isAdded = false;
-    originCollection.forEachItemGroup(originGroup => {
-        // sub directory 안에 만들어진 경우
-        if((addedByFolderName) && (!isAdded) && (originGroup.name === added.parent().name)) {
-            originGroup.items.add(added);
-            isAdded = true;
-        }
-    });
+    // sub 디렉토리에 만들어진 경우에 sub 디렉토리에 추가하도록 하는 기능
+    // 폴더 명을 기준으로 추가
+    if(addedByFolderName) {
+        originCollection.forEachItemGroup(originGroup => {
+            if((!isAdded) && (originGroup.name === added.parent().name)) {
+                originGroup.items.add(added);
+                isAdded = true;
+            }
+        });
+    }
     // root directory에 만들어진 경우
     if(!isAdded) {
         originCollection.items.add(added);
