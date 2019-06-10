@@ -1,5 +1,6 @@
 var fs = require('fs'),
     Collection = require('postman-collection').Collection,
+    ItemGroup = require('postman-collection').ItemGroup,
     originCollection,
     updatedCollection;
 
@@ -31,7 +32,8 @@ console.log('');
 
 console.log('삭제된 리퀘스트: ');
 deletedList = originList.filter(d => !updatedList.find(m => m.request.url.getRaw() == d.request.url.getRaw()));
-deletedList.forEach(item => console.log(item.request.url.getRaw()));
+templist = originList.filter(d => updatedList.find(m => m.request.url.getRaw() == d.request.url.getRaw()));
+deletedList.forEach(item => console.log(item.request.url.getRaw() + ' : ' + item.id));
 console.log('');
 
 // 추가된 request 추가
@@ -55,7 +57,7 @@ deletedList.forEach(deleted => originCollection.items.remove(deleted.id));
 deletedList.forEach(item => item.forEachParent(parent => parent.items.remove(item.id)));
 
 console.log('최신화된 컬렉션: ');
-originCollection.forEachItem(item => console.log(item.request.url.getRaw()));
-console.log('');
+originCollection.forEachItem(item => console.log(item.request.url.getRaw() + ' : ' + item.id));
+console.log('FIN');
 
 fs.writeFileSync('./collection_folder/merged_collection.json', JSON.stringify(originCollection));
